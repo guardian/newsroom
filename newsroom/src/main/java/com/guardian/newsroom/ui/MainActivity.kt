@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.guardian.newsroom.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : Activity(){
+class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +14,7 @@ class MainActivity : Activity(){
         initRecyclerView()
     }
 
-    fun initRecyclerView(){
+    fun initRecyclerView() {
         val adapter = ReportedEventAdapter(emptyList())
         rvReportedEvents.adapter = adapter
         rvReportedEvents.layoutManager = LinearLayoutManager(this)
