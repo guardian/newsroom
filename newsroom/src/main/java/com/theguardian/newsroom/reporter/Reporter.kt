@@ -4,9 +4,8 @@ import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.model.Event
 
 
-abstract class Reporter {
+abstract class Reporter(val sourceName: String) {
 
-    open val sourceName: String = ""
     private var _newsroom: Newsroom? = null
     private val newsroom: Newsroom
         get() {

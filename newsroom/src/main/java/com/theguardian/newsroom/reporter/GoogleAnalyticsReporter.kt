@@ -7,10 +7,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
-class GoogleAnalyticsReporter: Reporter() {
-
-    override val sourceName: String
-        get() = "Google Analytics"
+class GoogleAnalyticsReporter: Reporter("Google Analytics") {
 
     override fun onStart(){
         notifyWhenGaHitsAreSent()
