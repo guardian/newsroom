@@ -1,4 +1,4 @@
-package com.theguardian.newsroom
+package com.theguardian.newsroom.reporter
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import com.theguardian.newsroom.Reporter
 import com.theguardian.newsroom.model.Event
 import java.util.concurrent.atomic.AtomicInteger
 
