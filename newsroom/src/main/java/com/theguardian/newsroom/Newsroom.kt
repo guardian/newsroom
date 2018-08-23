@@ -15,14 +15,21 @@ class Newsroom(private val context: Context) {
     private val notificationManager = NotificationManagerCompat.from(context)
     private val notificationId = AtomicInteger(1821)
 
+    private val reporters = mutableListOf<ReporterTasks>()
+
     fun reportEvent(event: Event){
         notification(event)
     }
 
     fun addReporter(reporter: ReporterTasks): Newsroom {
+        reporters.add(reporter)
         reporter.setNewsroom(this)
         reporter.onStart()
         return this
+    }
+
+    fun onDestroy(){
+        reporters.forEach { it.onStop() }
     }
 
     private fun notification(event: Event){

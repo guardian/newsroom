@@ -13,6 +13,10 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
         notifyWhenGaHitsAreSent()
     }
 
+    override fun onStop() {
+        //TODO Implement disposing of RX
+    }
+
     companion object {
         private const val TAG = "Newsroom"
     }
