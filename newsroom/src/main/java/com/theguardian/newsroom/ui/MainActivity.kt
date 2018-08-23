@@ -3,7 +3,7 @@ package com.theguardian.newsroom.ui
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.guardian.newsroom.R
+import com.theguardian.newsroom.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
