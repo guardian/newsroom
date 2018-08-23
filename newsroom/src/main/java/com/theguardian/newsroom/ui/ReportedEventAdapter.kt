@@ -1,4 +1,4 @@
-package com.guardian.newsroom.ui
+package com.theguardian.newsroom.ui
 
 import android.widget.TextView
 import android.support.v7.widget.RecyclerView

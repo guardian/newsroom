@@ -1,4 +1,4 @@
-package com.guardian.newsroom.ui
+package com.theguardian.newsroom.ui
 
 import android.app.Activity
 import android.os.Bundle
