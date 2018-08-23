@@ -1,11 +1,11 @@
 package com.theguardian.newsroom.ui
 
-import android.widget.TextView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.guardian.newsroom.R
+import android.widget.TextView
+import com.theguardian.newsroom.R
 
 
 class ReportedEventAdapter(private val feedItemList: List<String>) : RecyclerView.Adapter<ReportedEventAdapter.JsonStringViewHolder>() {
