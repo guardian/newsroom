@@ -1,7 +1,6 @@
 package com.theguardian.newsroom.reporter
 
 import android.util.Log
-import com.theguardian.newsroom.Reporter
 import com.theguardian.newsroom.model.Event
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable

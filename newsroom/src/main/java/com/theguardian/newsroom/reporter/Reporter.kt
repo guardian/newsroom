@@ -1,7 +1,7 @@
-package com.theguardian.newsroom
+package com.theguardian.newsroom.reporter
 
+import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.model.Event
-import com.theguardian.newsroom.reporter.Newsroom
 
 
 abstract class Reporter {
