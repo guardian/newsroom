@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.theguardian.newsroom.R
-import com.theguardian.newsroom.model.Event
 
-class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Adapter<ReportedEventAdapter.JsonStringViewHolder>() {
+
+class ReportedEventAdapter(private val feedItemList: List<String>) : RecyclerView.Adapter<ReportedEventAdapter.JsonStringViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): JsonStringViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item, null)
@@ -16,22 +16,15 @@ class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(customViewHolder: JsonStringViewHolder, i: Int) {
-        val event = eventList[i]
-        customViewHolder.tvTitle.text = event.title
-        customViewHolder.tvMessage.text = event.message
-        customViewHolder.tvSource.text = event.source
-        customViewHolder.tvTimestamp.text = event.timestamp.toString()
+        val feedItem = feedItemList[i]
+        customViewHolder.tvLog.text = feedItem
     }
 
     override fun getItemCount(): Int {
-        return eventList.size
+        return feedItemList.size
     }
 
     class JsonStringViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tvTitle: TextView = view.findViewById(R.id.tvTitle)
-        var tvMessage: TextView = view.findViewById(R.id.tvMessage)
-        var tvSource: TextView = view.findViewById(R.id.tvSource)
-        var tvTimestamp: TextView = view.findViewById(R.id.tvTimestamp)
-
+        var tvLog: TextView = view.findViewById(R.id.tvLog)
     }
 }
