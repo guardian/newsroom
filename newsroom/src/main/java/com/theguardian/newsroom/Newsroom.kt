@@ -7,7 +7,7 @@ import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import com.theguardian.newsroom.model.Event
-import com.theguardian.newsroom.reporter.Reporter
+import com.theguardian.newsroom.reporter.ReporterTasks
 import java.util.concurrent.atomic.AtomicInteger
 
 class Newsroom(private val context: Context) {
@@ -19,7 +19,7 @@ class Newsroom(private val context: Context) {
         notification(event)
     }
 
-    fun addReporter(reporter: Reporter): Newsroom {
+    fun addReporter(reporter: ReporterTasks): Newsroom {
         reporter.setNewsroom(this)
         reporter.onStart()
         return this

@@ -7,7 +7,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
-class GoogleAnalyticsReporter: Reporter("Google Analytics") {
+class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
 
     override fun onStart(){
         notifyWhenGaHitsAreSent()
@@ -15,6 +15,11 @@ class GoogleAnalyticsReporter: Reporter("Google Analytics") {
 
     companion object {
         private const val TAG = "Newsroom"
+    }
+
+    override fun acceptTipOff(tipOff: String) {
+        val event = Event(sourceName,"GA Event Tracked", tipOff, Date())
+        sendEvent(event)
     }
 
     private fun logcat(options: String): Observable<String> {
@@ -67,8 +72,7 @@ class GoogleAnalyticsReporter: Reporter("Google Analytics") {
                 .subscribe({ map ->
                     if (map["t"] == "event") {
                         val message = "Category: ${map["ec"]}\nAction: ${map["ea"]}\nLabel: ${map["el"]}"
-                        val event = Event(sourceName,"GA Event Tracked",message, Date())
-                        sendEvent(event)
+                        acceptTipOff(message)
                     }
                 }, { err -> Log.w(TAG, err) })
     }

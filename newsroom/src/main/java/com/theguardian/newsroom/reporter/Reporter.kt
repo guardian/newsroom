@@ -4,7 +4,7 @@ import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.model.Event
 
 
-abstract class Reporter(val sourceName: String) {
+abstract class Reporter<T>(val sourceName: String): ReporterTasks {
 
     private var _newsroom: Newsroom? = null
     private val newsroom: Newsroom
@@ -12,15 +12,15 @@ abstract class Reporter(val sourceName: String) {
         return _newsroom ?: throw IllegalStateException("This reporters gone rogue, give them a newsroom")
     }
     
-    fun setNewsroom(newsroom: Newsroom){
+    override fun setNewsroom(newsroom: Newsroom){
         this._newsroom = newsroom
+    }
+
+    open fun acceptTipOff(tipOff: T){
+
     }
 
     fun sendEvent(event: Event){
         newsroom.reportEvent(event)
-    }
-
-    open fun onStart(){
-
     }
 }
