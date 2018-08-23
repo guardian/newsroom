@@ -1,4 +1,4 @@
-package com.guardian.newsroom
+package com.theguardian.newsroom
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
