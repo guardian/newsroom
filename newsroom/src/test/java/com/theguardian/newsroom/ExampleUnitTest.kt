@@ -1,4 +1,4 @@
-package com.guardian.newsroom
+package com.theguardian.newsroom
 
 import org.junit.Test
 
