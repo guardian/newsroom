@@ -14,7 +14,7 @@ class MainActivity : Activity() {
         initRecyclerView()
     }
 
-    fun initRecyclerView() {
+    private fun initRecyclerView() {
         val adapter = ReportedEventAdapter(emptyList())
         rvReportedEvents.adapter = adapter
         rvReportedEvents.layoutManager = LinearLayoutManager(this)
