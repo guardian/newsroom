@@ -24,7 +24,7 @@ class ReportedEventAdapter(private val feedItemList: List<String>) : RecyclerVie
         return feedItemList.size
     }
 
-    inner class JsonStringViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class JsonStringViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvLog: TextView = view.findViewById(R.id.tvLog)
     }
 }
