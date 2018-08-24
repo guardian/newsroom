@@ -23,7 +23,7 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
 
     override fun acceptTipOff(tipOff: String) {
         val event = Event(sourceName,"GA Event Tracked", tipOff, Date())
-        sendEvent(event)
+        reportEvent(event)
     }
 
     private fun logcat(options: String): Observable<String> {

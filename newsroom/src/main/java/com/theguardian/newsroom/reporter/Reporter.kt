@@ -20,7 +20,7 @@ abstract class Reporter<T>(val sourceName: String): ReporterTasks {
 
     }
 
-    fun sendEvent(event: Event){
+    fun reportEvent(event: Event){
         newsroom.reportEvent(event)
     }
 }
