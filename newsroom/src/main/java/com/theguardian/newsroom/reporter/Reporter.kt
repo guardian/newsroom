@@ -16,9 +16,7 @@ abstract class Reporter<T>(val sourceName: String): ReporterTasks {
         this._newsroom = newsroom
     }
 
-    open fun acceptTipOff(tipOff: T){
-
-    }
+    abstract fun sendEvent(tipOff: T)
 
     fun reportEvent(event: Event){
         newsroom.reportEvent(event)

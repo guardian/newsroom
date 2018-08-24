@@ -5,7 +5,6 @@ import com.theguardian.newsroom.model.Event
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 
 class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
 
@@ -21,8 +20,8 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
         private const val TAG = "Newsroom"
     }
 
-    override fun acceptTipOff(tipOff: String) {
-        val event = Event(sourceName,"GA Event Tracked", tipOff, Date())
+    override fun sendEvent(tipOff: String) {
+        val event = Event(sourceName,"GA Event Tracked", tipOff)
         reportEvent(event)
     }
 
@@ -76,7 +75,7 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
                 .subscribe({ map ->
                     if (map["t"] == "event") {
                         val message = "Category: ${map["ec"]}\nAction: ${map["ea"]}\nLabel: ${map["el"]}"
-                        acceptTipOff(message)
+                        sendEvent(message)
                     }
                 }, { err -> Log.w(TAG, err) })
     }

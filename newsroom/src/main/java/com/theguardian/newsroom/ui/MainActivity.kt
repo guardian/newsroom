@@ -17,6 +17,7 @@ class MainActivity : Activity() {
 
         Newsroom(this).addReporter(GoogleAnalyticsReporter())
     }
+    
 
     private fun initRecyclerView() {
         val adapter = ReportedEventAdapter(emptyList())

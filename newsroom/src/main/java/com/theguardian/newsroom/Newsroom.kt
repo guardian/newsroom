@@ -15,7 +15,7 @@ class Newsroom(private val context: Context) {
     private val notificationManager = NotificationManagerCompat.from(context)
     private val notificationId = AtomicInteger(1821)
 
-    private val reporters = mutableListOf<ReporterTasks>()
+    private val reporters = mutableSetOf<ReporterTasks>()
 
     fun reportEvent(event: Event){
         notification(event)
