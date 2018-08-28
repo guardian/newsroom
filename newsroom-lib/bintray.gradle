@@ -21,12 +21,12 @@ artifacts {
 }
 
 group = 'com.theguardian'
-version = '0.1.0'
+version = '0.1.1'
 
 install {
     repositories.mavenInstaller {
         pom.project {
-            name 'Newsroom'
+            name 'newsroom'
             description 'An on-device log surfacing library for Android.'
             url 'https://github.com/guardian/newsroom'
             inceptionYear '2018'
@@ -34,7 +34,7 @@ install {
             packaging 'aar'
             groupId 'com.theguardian'
             artifactId 'newsroom'
-            version '0.1.0'
+            version '0.1.1'
 
             licenses {
                 license {
@@ -80,10 +80,10 @@ bintray {
         vcsUrl = 'https://github.com/guardian/newsroom.git'
         publish = true
         version {
-            name = '0.1.0'
-            desc = 'Newsroom 0.1.0'
+            name = '0.1.1'
+            desc = 'Newsroom 0.1.1'
             released = new Date()
-            vcsTag = 'v0.1.0'
+            vcsTag = 'v0.1.1'
         }
     }
 }
