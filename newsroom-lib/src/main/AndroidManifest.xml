@@ -1,2 +1,11 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.theguardian.newsroom" />
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.theguardian.newsroom">
+
+    <application android:label="Newsroom">
+
+        <activity android:name=".ui.MainActivity" android:launchMode="singleTop"/>
+
+    </application>
+
+</manifest>

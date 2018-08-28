@@ -21,7 +21,7 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
     }
 
     override fun sendEvent(tipOff: String) {
-        val event = Event(sourceName,"GA Event Tracked", tipOff)
+        val event = Event(sourceName, "GA Event Tracked", tipOff)
         reportEvent(event)
     }
 
