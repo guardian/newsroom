@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.theguardian.newsroom">
+    package="com.theguardian.newsroom.sample">
 
     <application
         android:allowBackup="true"

@@ -20,7 +20,7 @@ class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Ad
         customViewHolder.tvTitle.text = event.title
         customViewHolder.tvMessage.text = event.message
         customViewHolder.tvSource.text = event.source
-        customViewHolder.tvTimestamp.text = event.timestamp.toString()
+        customViewHolder.tvTimestamp.text = event.date.toString()
     }
 
     override fun getItemCount(): Int {

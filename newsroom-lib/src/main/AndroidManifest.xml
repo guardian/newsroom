@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.theguardian.newsroom">
 
-    <application android:label="Newsroom">
+    <application>
 
         <activity android:name=".ui.MainActivity" android:launchMode="singleTop"/>
 
