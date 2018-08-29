@@ -1,0 +1,89 @@
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+/*
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+*/
+
+artifacts {
+    //archives javadocJar
+    archives sourcesJar
+}
+
+group = 'com.theguardian'
+version = '0.1.2'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'newsroom'
+            description 'An on-device log surfacing library for Android.'
+            url 'https://github.com/guardian/newsroom'
+            inceptionYear '2018'
+
+            packaging 'aar'
+            groupId 'com.theguardian'
+            artifactId 'newsroom'
+            version '0.1.2'
+
+            licenses {
+                license {
+                    name 'The MIT License (MIT)'
+                    url 'https://opensource.org/licenses/MIT'
+                }
+            }
+            scm {
+                connection 'https://github.com/guardian/newsroom.git'
+                url 'https://github.com/guardian/newsroom'
+
+            }
+            developers {
+                developer {
+                    id = 'maxspencer'
+                    name 'Max Spencer'
+                }
+                developer {
+                    id = 'ChrisOwen101'
+                    name 'Chris Owen'
+                }
+                developer {
+                    id = 'jordanterry'
+                    name 'Jordan Terry'
+                }
+            }
+        }
+    }
+}
+
+Properties bintrayProperties = new Properties()
+bintrayProperties.load(project.rootProject.file('bintray.properties').newDataInputStream())
+
+bintray {
+    user = bintrayProperties.getProperty('user')
+    key = bintrayProperties.get('key')
+    configurations = ['archives']
+    pkg {
+        repo = 'android'
+        name = 'newsroom'
+        userOrg = 'guardian'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/guardian/newsroom.git'
+        publish = true
+        version {
+            name = '0.1.2'
+            desc = 'Newsroom 0.1.2'
+            released = new Date()
+            vcsTag = 'v0.1.2'
+        }
+    }
+}

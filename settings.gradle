@@ -1,1 +1,1 @@
-include ':newsroom'
+include ':newsroom', ':newsroom-lib'
