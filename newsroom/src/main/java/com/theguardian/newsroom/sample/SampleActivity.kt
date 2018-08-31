@@ -24,7 +24,7 @@ class TestReporter : Reporter("Test reporter") {
     }
 
     override fun onStop() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // Empty.
     }
 
 }
