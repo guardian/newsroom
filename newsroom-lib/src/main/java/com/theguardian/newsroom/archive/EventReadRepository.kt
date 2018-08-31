@@ -1,4 +1,4 @@
-package com.theguardian.newsroom.database
+package com.theguardian.newsroom.archive
 
 import com.theguardian.newsroom.model.Event
 

@@ -21,10 +21,10 @@ class NotificationEventHandlingDelegate(private val context: Context) : EventHan
     private fun notification(event: Event) {
         val notificationBuilder = newNotification(context)
                 .setContentTitle(event.title)
-        if (event.message != null) {
+        if (event.data != null) {
             notificationBuilder
-                    .setContentText(event.message.toString())
-                    .setStyle(NotificationCompat.BigTextStyle().bigText(event.message.toString()).setSummaryText("Expand for details"))
+                    .setContentText(event.data.toString())
+                    .setStyle(NotificationCompat.BigTextStyle().bigText(event.data.toString()).setSummaryText("Expand for details"))
         }
         val notification = notificationBuilder.setSmallIcon(android.R.drawable.stat_notify_error)
                 .build()

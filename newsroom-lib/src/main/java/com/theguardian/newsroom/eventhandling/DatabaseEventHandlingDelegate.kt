@@ -1,6 +1,6 @@
 package com.theguardian.newsroom.eventhandling
 
-import com.theguardian.newsroom.database.EventWriteRepository
+import com.theguardian.newsroom.archive.EventWriteRepository
 import com.theguardian.newsroom.model.Event
 
 class DatabaseEventHandlingDelegate(private val eventWriteRepository: EventWriteRepository) : EventHandlingDelegate {

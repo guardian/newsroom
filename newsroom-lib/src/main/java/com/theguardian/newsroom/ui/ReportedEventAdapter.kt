@@ -18,7 +18,7 @@ class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Ad
     override fun onBindViewHolder(customViewHolder: JsonStringViewHolder, i: Int) {
         val event = eventList[i]
         customViewHolder.tvTitle.text = event.title
-        customViewHolder.tvMessage.text = event.message?.toString()
+        customViewHolder.tvMessage.text = event.data?.toString()
         customViewHolder.tvSource.text = event.source
         customViewHolder.tvTimestamp.text = event.date.toString()
     }
