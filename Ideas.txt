@@ -1,0 +1,21 @@
+What Can This Do?
+
+General Purpose
+---
+* Google Analytics
+* HTTP
+* Crashes
+* Internet Usage
+
+Enterprise
+---
+* Ophan
+* Adverts
+
+
+--------------------
+Golden Ticket Ideas
+
+* Phone hosted web server for access from a browser on pc
+
+
