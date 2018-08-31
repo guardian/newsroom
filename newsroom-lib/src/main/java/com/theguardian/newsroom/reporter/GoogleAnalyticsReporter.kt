@@ -6,9 +6,9 @@ import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
+class GoogleAnalyticsReporter : Reporter<String>("Google Analytics") {
 
-    override fun onStart(){
+    override fun onStart() {
         notifyWhenGaHitsAreSent()
     }
 
@@ -67,7 +67,6 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
     private fun gaHitDeliveries(): Observable<String> = logcat("-s GAv4")
             .filter { it.contains("Hit delivery requested") }
             .map { it.split("Hit delivery requested:").last() }
-
 
     private fun notifyWhenGaHitsAreSent(): Disposable {
         return gaHitDeliveries()

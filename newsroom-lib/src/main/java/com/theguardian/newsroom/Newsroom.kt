@@ -17,7 +17,7 @@ class Newsroom(private val context: Context) {
 
     private val reporters = mutableSetOf<ReporterTasks>()
 
-    fun reportEvent(event: Event){
+    fun reportEvent(event: Event) {
         notification(event)
     }
 
@@ -28,11 +28,11 @@ class Newsroom(private val context: Context) {
         return this
     }
 
-    fun onDestroy(){
+    fun onDestroy() {
         reporters.forEach { it.onStop() }
     }
 
-    private fun notification(event: Event){
+    private fun notification(event: Event) {
         val notification = newNotification(context)
                 .setContentTitle(event.title)
                 .setContentText(event.message)
