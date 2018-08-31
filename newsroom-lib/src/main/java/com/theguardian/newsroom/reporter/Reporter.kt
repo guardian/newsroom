@@ -3,7 +3,7 @@ package com.theguardian.newsroom.reporter
 import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.model.Event
 
-abstract class Reporter<T>(val sourceName: String) : ReporterTasks {
+abstract class Reporter(private val sourceName: String) : ReporterTasks {
     private var _newsroom: Newsroom? = null
     private val newsroom: Newsroom
         get() {
@@ -12,12 +12,10 @@ abstract class Reporter<T>(val sourceName: String) : ReporterTasks {
         }
 
     override fun setNewsroom(newsroom: Newsroom) {
-        this._newsroom = newsroom
+        _newsroom = newsroom
     }
 
-    abstract fun sendEvent(tipOff: T)
-
-    fun reportEvent(event: Event) {
-        newsroom.reportEvent(event)
+    fun reportEvent(title: String, data: Map<String, String?>? = null) {
+        newsroom.reportEvent(Event(sourceName, title, data))
     }
 }
