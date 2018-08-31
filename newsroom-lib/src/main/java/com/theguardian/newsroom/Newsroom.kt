@@ -6,19 +6,31 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import com.theguardian.newsroom.database.EventWriteRepository
+import com.theguardian.newsroom.database.room.RoomEventWriteRepository
+import com.theguardian.newsroom.eventhandling.DatabaseEventHandlingDelegate
+import com.theguardian.newsroom.eventhandling.EventHandlingDelegate
+import com.theguardian.newsroom.eventhandling.NotificationEventHandlingDelegate
 import com.theguardian.newsroom.model.Event
 import com.theguardian.newsroom.reporter.ReporterTasks
 import java.util.concurrent.atomic.AtomicInteger
 
-class Newsroom(private val context: Context) {
-
-    private val notificationManager = NotificationManagerCompat.from(context)
-    private val notificationId = AtomicInteger(1821)
+class Newsroom(context: Context) {
 
     private val reporters = mutableSetOf<ReporterTasks>()
 
+    private val databaseEventHandlingDelegate: EventHandlingDelegate by lazy {
+        DatabaseEventHandlingDelegate(RoomEventWriteRepository())
+    }
+
+    private val notificationEventHandlingDelegate: EventHandlingDelegate by lazy {
+        NotificationEventHandlingDelegate(context)
+    }
+
+    private val eventHandlers: List<EventHandlingDelegate> = listOf(notificationEventHandlingDelegate, databaseEventHandlingDelegate)
+
     fun reportEvent(event: Event) {
-        notification(event)
+        eventHandlers.forEach { it.handleEvent(event) }
     }
 
     fun addReporter(reporter: ReporterTasks): Newsroom {
@@ -30,27 +42,5 @@ class Newsroom(private val context: Context) {
 
     fun onDestroy() {
         reporters.forEach { it.onStop() }
-    }
-
-    private fun notification(event: Event) {
-        val notification = newNotification(context)
-                .setContentTitle(event.title)
-                .setContentText(event.message)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(event.message).setSummaryText("Expand for details"))
-                .setSmallIcon(android.R.drawable.stat_notify_error)
-                .build()
-        notificationManager.notify(notificationId.getAndIncrement(), notification)
-    }
-
-    private fun newNotification(context: Context): NotificationCompat.Builder {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, "Newsroom", NotificationManager.IMPORTANCE_DEFAULT)
-            context.getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
-        }
-        return NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-    }
-
-    companion object {
-        private const val NOTIFICATION_CHANNEL_ID = "newsroom"
     }
 }
