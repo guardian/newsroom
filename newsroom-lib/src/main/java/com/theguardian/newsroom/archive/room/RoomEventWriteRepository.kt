@@ -12,6 +12,6 @@ class RoomEventWriteRepository(private val context: Context) : EventWriteReposit
     }
 
     override fun writeEvent(event: Event) {
-        newsroomDatabase.roomEventDao().insert(RoomEvent(event.source, event.title, event.date, event.data))
+        newsroomDatabase.roomEventDao().insert(RoomEvent(null, event.source, event.title))
     }
 }
