@@ -2,6 +2,8 @@
 
 *An on-device log surfacing library from The Guardian*
 
+https://en.wikipedia.org/wiki/Newsroom
+
 ## Making a release
 
 1. Open `newroom-lib/bintray.gradle`.
