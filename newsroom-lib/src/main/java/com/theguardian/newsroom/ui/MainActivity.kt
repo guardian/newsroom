@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.R
-import com.theguardian.newsroom.reporter.GoogleAnalyticsBaseReporter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.theguardian.newsroom.reporter.GoogleAnalyticsReporter
 
 class MainActivity : Activity() {
 
@@ -15,7 +14,7 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         initRecyclerView()
 
-        Newsroom(this).addReporter(GoogleAnalyticsBaseReporter())
+        Newsroom(this).addReporter(GoogleAnalyticsReporter())
     }
 
     private fun initRecyclerView() {
