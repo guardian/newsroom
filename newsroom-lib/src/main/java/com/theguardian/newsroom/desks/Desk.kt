@@ -1,7 +1,7 @@
-package com.theguardian.newsroom.eventhandling
+package com.theguardian.newsroom.desks
 
 import com.theguardian.newsroom.model.Event
 
-interface EventHandlingDelegate {
+interface Desk {
     fun handleEvent(event: Event)
 }

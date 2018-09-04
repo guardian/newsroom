@@ -2,31 +2,31 @@ package com.theguardian.newsroom
 
 import android.content.Context
 import com.theguardian.newsroom.archive.room.RoomEventWriteRepository
-import com.theguardian.newsroom.eventhandling.DatabaseEventHandlingDelegate
-import com.theguardian.newsroom.eventhandling.EventHandlingDelegate
-import com.theguardian.newsroom.eventhandling.NotificationEventHandlingDelegate
+import com.theguardian.newsroom.desks.DatabaseDesk
+import com.theguardian.newsroom.desks.Desk
+import com.theguardian.newsroom.desks.NotificationDesk
 import com.theguardian.newsroom.model.Event
-import com.theguardian.newsroom.reporter.ReporterTasks
+import com.theguardian.newsroom.reporter.Reporter
 
 class Newsroom(context: Context) {
 
-    private val reporters = mutableSetOf<ReporterTasks>()
+    private val reporters = mutableSetOf<Reporter>()
 
-    private val databaseEventHandlingDelegate: EventHandlingDelegate by lazy {
-        DatabaseEventHandlingDelegate(RoomEventWriteRepository(context))
+    private val databaseDesk: Desk by lazy {
+        DatabaseDesk(RoomEventWriteRepository(context))
     }
 
-    private val notificationEventHandlingDelegate: EventHandlingDelegate by lazy {
-        NotificationEventHandlingDelegate(context)
+    private val notificationDesk: Desk by lazy {
+        NotificationDesk(context)
     }
 
-    private val eventHandlers: List<EventHandlingDelegate> = listOf(notificationEventHandlingDelegate, databaseEventHandlingDelegate)
+    private val eventHandlers: Set<Desk> = setOf(notificationDesk, databaseDesk)
 
     fun reportEvent(event: Event) {
         eventHandlers.forEach { it.handleEvent(event) }
     }
 
-    fun addReporter(reporter: ReporterTasks): Newsroom {
+    fun addReporter(reporter: Reporter): Newsroom {
         reporters.add(reporter)
         reporter.setNewsroom(this)
         reporter.onStart()

@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class GoogleAnalyticsReporter : Reporter("Google Analytics") {
+class GoogleAnalyticsBaseReporter : BaseReporter("Google Analytics") {
 
     override fun onStart() {
         notifyWhenGaHitsAreSent()

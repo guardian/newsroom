@@ -1,4 +1,4 @@
-package com.theguardian.newsroom.eventhandling
+package com.theguardian.newsroom.desks
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationManagerCompat
 import com.theguardian.newsroom.model.Event
 import java.util.concurrent.atomic.AtomicInteger
 
-class NotificationEventHandlingDelegate(private val context: Context) : EventHandlingDelegate {
+class NotificationDesk(private val context: Context) : Desk {
 
     private val notificationManager = NotificationManagerCompat.from(context)
     private val notificationId = AtomicInteger(1821)
