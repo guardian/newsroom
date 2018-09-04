@@ -1,4 +1,4 @@
-package com.theguardian.newsroom.sample
+package com.theguardian.newsroom
 
 import android.app.Activity
 import android.os.Bundle
