@@ -18,7 +18,7 @@ class SampleActivity : Activity() {
 
 class TestReporter : Reporter("Test reporter") {
     override fun onStart() {
-        Observable.interval(1, TimeUnit.SECONDS).subscribe {
+        Observable.interval(5, TimeUnit.SECONDS).subscribe {
             reportEvent("Test Event", mapOf("Time" to it.toString()))
         }
     }

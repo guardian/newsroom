@@ -8,6 +8,7 @@ import com.theguardian.newsroom.ext.getViewModel
 import com.theguardian.newsroom.ext.observeNonNull
 import com.theguardian.newsroom.model.Event
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : FragmentActivity() {
 
@@ -22,10 +23,10 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun initViewModel(){
-        newsroomViewModel = getViewModel { NewsroomViewModel(this) }.apply {
+        newsroomViewModel = getViewModel { NewsroomViewModel(application) }.apply {
             observeNonNull(allEvents) {
                 val events = it.map {
-                    Event(it.source, it.title, mapOf())
+                    Event(it.source, it.title, Date(it.timestamp))
                 }
 
                 adapter.setData(events)
