@@ -1,7 +1,6 @@
 package com.theguardian.newsroom
 
 import android.content.Context
-import com.theguardian.newsroom.archive.room.RoomEventWriteRepository
 import com.theguardian.newsroom.desks.DatabaseDesk
 import com.theguardian.newsroom.desks.Desk
 import com.theguardian.newsroom.desks.NotificationDesk
@@ -13,7 +12,7 @@ class Newsroom(context: Context) {
     private val reporters = mutableSetOf<Reporter>()
 
     private val databaseDesk: Desk by lazy {
-        DatabaseDesk(RoomEventWriteRepository(context))
+        DatabaseDesk(context)
     }
 
     private val notificationDesk: Desk by lazy {

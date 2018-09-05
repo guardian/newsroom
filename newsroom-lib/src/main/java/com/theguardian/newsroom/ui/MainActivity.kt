@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.R
 import com.theguardian.newsroom.reporter.GoogleAnalyticsReporter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
 
