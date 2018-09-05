@@ -13,6 +13,6 @@ class DatabaseDesk(private val context: Context) : Desk {
     }
 
     override fun handleEvent(event: Event) {
-        newsroomDatabase.roomEventDao().insert(RoomEvent(null, event.source, event.title))
+        newsroomDatabase.roomEventDao().insert(RoomEvent(event.id, event.source, event.title, event.date))
     }
 }
