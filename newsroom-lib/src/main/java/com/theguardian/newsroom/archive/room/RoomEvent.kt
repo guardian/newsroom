@@ -14,5 +14,5 @@ data class RoomEvent(
         @ColumnInfo
         val title: String,
         @ColumnInfo
-        val timestamp: Date
+        val timestamp: Long
 )

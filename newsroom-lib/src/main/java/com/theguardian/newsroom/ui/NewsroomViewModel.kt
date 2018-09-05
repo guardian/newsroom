@@ -1,18 +1,21 @@
-package com.theguardian.newsroom.desks
+package com.theguardian.newsroom.ui
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.ViewModel
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.theguardian.newsroom.archive.room.NewsroomDatabase
 import com.theguardian.newsroom.archive.room.RoomEvent
-import com.theguardian.newsroom.model.Event
 
-class DatabaseDesk(private val context: Context) : Desk {
+class NewsroomViewModel(context: Context) : ViewModel() {
+
+    val allEvents: LiveData<List<RoomEvent>>
 
     private val newsroomDatabase: NewsroomDatabase by lazy {
         Room.databaseBuilder(context, NewsroomDatabase::class.java, "newsroom-db").build()
     }
 
-    override fun handleEvent(event: Event) {
-        newsroomDatabase.roomEventDao().insert(RoomEvent(event.id, event.source, event.title, event.date.time))
+    init {
+        allEvents = newsroomDatabase.roomEventDao().getAllRoomEvents()
     }
 }

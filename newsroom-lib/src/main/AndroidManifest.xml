@@ -4,7 +4,9 @@
 
     <application>
 
-        <activity android:label="@string/lib_name" android:name=".ui.MainActivity" android:launchMode="singleTop">
+        <activity
+            android:label="@string/lib_name"
+            android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
