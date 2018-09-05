@@ -1,4 +1,4 @@
-package com.theguardian.newsroom
+package com.theguardian.newsroom.sample
 
 import android.app.Activity
 import android.os.Bundle
@@ -18,7 +18,7 @@ class SampleActivity : Activity() {
 
 class TestReporter : Reporter("Test reporter") {
     override fun onStart() {
-        Observable.interval(1, TimeUnit.SECONDS).subscribe {
+        Observable.interval(30, TimeUnit.SECONDS).subscribe {
             reportEvent("Test Event", mapOf("Time" to it.toString()))
         }
     }
