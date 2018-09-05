@@ -31,6 +31,7 @@ class MainActivity : Activity() {
     }
 
     private fun loadData(){
+        //TODO Replace with RxJava flowable so we continue to get updates
         thread {
             val events = newsroomDatabase.roomEventDao().getAllRoomEvents().map {
                 Event(it.source, it.title, mapOf())
