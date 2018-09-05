@@ -1,28 +1,24 @@
 package com.theguardian.newsroom.reporter
 
 import android.util.Log
-import com.theguardian.newsroom.model.Event
 import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
+class GoogleAnalyticsReporter : Reporter("Google Analytics") {
 
-    override fun onStart(){
+    private val compositeDisposables: CompositeDisposable = CompositeDisposable()
+
+    override fun onStart() {
         notifyWhenGaHitsAreSent()
     }
 
     override fun onStop() {
-        //TODO Implement disposing of RX
+        compositeDisposables.clear()
     }
 
     companion object {
         private const val TAG = "Newsroom"
-    }
-
-    override fun sendEvent(tipOff: String) {
-        val event = Event(sourceName, "GA Event Tracked", tipOff)
-        reportEvent(event)
     }
 
     private fun logcat(options: String): Observable<String> {
@@ -64,19 +60,23 @@ class GoogleAnalyticsReporter: Reporter<String>("Google Analytics") {
         return result
     }
 
-    private fun gaHitDeliveries(): Observable<String> = logcat("-s GAv4")
-            .filter { it.contains("Hit delivery requested") }
-            .map { it.split("Hit delivery requested:").last() }
+    private fun gaHitDeliveries(): Observable<String> {
+        return logcat("-s GAv4")
+                .filter { it.contains("Hit delivery requested") }
+                .map { it.split("Hit delivery requested:").last() }
+    }
 
-
-    private fun notifyWhenGaHitsAreSent(): Disposable {
-        return gaHitDeliveries()
+    private fun notifyWhenGaHitsAreSent() {
+        compositeDisposables.add(gaHitDeliveries()
                 .map { gaLogToMap(it) }
                 .subscribe({ map ->
                     if (map["t"] == "event") {
-                        val message = "Category: ${map["ec"]}\nAction: ${map["ea"]}\nLabel: ${map["el"]}"
-                        sendEvent(message)
+                        reportEvent("GA Event Tracked", mapOf(
+                                "Category" to map["ec"],
+                                "Action" to map["ea"],
+                                "Label" to map["el"]
+                        ))
                     }
-                }, { err -> Log.w(TAG, err) })
+                }, { err -> Log.w(TAG, err) }))
     }
 }
