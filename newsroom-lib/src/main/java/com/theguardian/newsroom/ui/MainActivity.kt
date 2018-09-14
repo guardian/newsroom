@@ -25,11 +25,11 @@ class MainActivity : FragmentActivity() {
     private fun initViewModel(){
         newsroomViewModel = getViewModel { NewsroomViewModel(application) }.apply {
             observeNonNull(allEvents) {
-                val events = it.map {
+                it.map {
                     Event(it.source, it.title, Date(it.timestamp))
+                }.apply {
+                    adapter.setData(this)
                 }
-
-                adapter.setData(events)
             }
         }
     }
