@@ -2,6 +2,8 @@
 
 *An on-device log surfacing library from The Guardian*
 
+>A newsroom is the central place where journalists—reporters, editors, and producers, along with other staffs—work to gather news to be published in a newspaper and/or an online newspaper or magazine, or broadcast on radio, television, or cable.
+
 https://en.wikipedia.org/wiki/Newsroom
 
 ## Making a release
