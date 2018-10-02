@@ -21,7 +21,7 @@ artifacts {
 }
 
 group = 'com.theguardian'
-version = '0.1.2'
+version = '0.1.3'
 
 install {
     repositories.mavenInstaller {
@@ -34,7 +34,7 @@ install {
             packaging 'aar'
             groupId 'com.theguardian'
             artifactId 'newsroom'
-            version '0.1.2'
+            version '0.1.3'
 
             licenses {
                 license {
@@ -80,10 +80,10 @@ bintray {
         vcsUrl = 'https://github.com/guardian/newsroom.git'
         publish = true
         version {
-            name = '0.1.2'
-            desc = 'Newsroom 0.1.2'
+            name = '0.1.3'
+            desc = 'Newsroom 0.1.3'
             released = new Date()
-            vcsTag = 'v0.1.2'
+            vcsTag = 'v0.1.3'
         }
     }
 }
