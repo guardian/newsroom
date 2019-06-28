@@ -1,5 +1,6 @@
 package com.theguardian.newsroom.ui
 
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.widget.TextView
 import com.theguardian.newsroom.R
 import com.theguardian.newsroom.model.Event
 
-class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Adapter<ReportedEventAdapter.JsonStringViewHolder>() {
+class ReportedEventAdapter : RecyclerView.Adapter<ReportedEventAdapter.JsonStringViewHolder>() {
+
+    private var eventList: List<Event> = emptyList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): JsonStringViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item, null)
@@ -21,6 +24,12 @@ class ReportedEventAdapter(private val eventList: List<Event>) : RecyclerView.Ad
         customViewHolder.tvMessage.text = event.data?.toString()
         customViewHolder.tvSource.text = event.source
         customViewHolder.tvTimestamp.text = event.date.toString()
+    }
+
+    fun setData(eventList: List<Event>){
+        val diff = DiffUtil.calculateDiff(EventDiffCallback(this.eventList, eventList))
+        this.eventList = eventList
+        diff.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int {

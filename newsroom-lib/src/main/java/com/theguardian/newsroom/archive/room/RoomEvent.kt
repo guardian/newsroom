@@ -6,10 +6,12 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class RoomEvent(
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey
         var id: Long?,
         @ColumnInfo
         val source: String,
         @ColumnInfo
-        val title: String
+        val title: String,
+        @ColumnInfo
+        val timestamp: Long
 )

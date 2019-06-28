@@ -2,6 +2,7 @@ package com.theguardian.newsroom.reporter
 
 import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.model.Event
+import java.util.*
 
 abstract class Reporter(private val sourceName: String) {
     private var _newsroom: Newsroom? = null
@@ -16,7 +17,7 @@ abstract class Reporter(private val sourceName: String) {
     }
 
     fun reportEvent(title: String, data: Map<String, String?>? = emptyMap()) {
-        newsroom.reportEvent(Event(sourceName, title, data))
+        newsroom.reportEvent(Event(sourceName, title, Date(),data))
     }
 
     abstract fun onStart()

@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.theguardian.newsroom"
+        applicationId "com.theguardian.newsroom.sample"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

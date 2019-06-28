@@ -1,26 +1,41 @@
 package com.theguardian.newsroom.ui
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
-import com.theguardian.newsroom.Newsroom
 import com.theguardian.newsroom.R
-import com.theguardian.newsroom.reporter.GoogleAnalyticsReporter
+import com.theguardian.newsroom.ext.getViewModel
+import com.theguardian.newsroom.ext.observeNonNull
+import com.theguardian.newsroom.model.Event
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
-class MainActivity : Activity() {
+class MainActivity : FragmentActivity() {
+
+    private val adapter = ReportedEventAdapter()
+    private var newsroomViewModel: NewsroomViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initRecyclerView()
+        initViewModel()
+    }
 
-        Newsroom(this).addReporter(GoogleAnalyticsReporter())
+    private fun initViewModel(){
+        newsroomViewModel = getViewModel { NewsroomViewModel(application) }.apply {
+            observeNonNull(allEvents) {
+                it.map {
+                    Event(it.source, it.title, Date(it.timestamp))
+                }.apply {
+                    adapter.setData(this)
+                }
+            }
+        }
     }
 
     private fun initRecyclerView() {
-        val adapter = ReportedEventAdapter(emptyList())
-        //rvReportedEvents.adapter = adapter
-        //rvReportedEvents.layoutManager = LinearLayoutManager(this)
+        rvReportedEvents.adapter = adapter
+        rvReportedEvents.layoutManager = LinearLayoutManager(this)
     }
 }
